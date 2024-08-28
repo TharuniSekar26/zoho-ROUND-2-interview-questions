@@ -1,0 +1,35 @@
+Input:
+A = gksrek
+B = geeksforgeeks
+Output: 1
+Explanation: A is a subsequence of B.
+
+====================================================
+public class SubSequence {
+
+	public static void main(String[] args) {
+		String A = "gfks";
+		String B = "geekforgeeks";
+		if(isSubsequence(A,B)) {
+			System.out.print("1");
+		}else {
+			System.out.print("0");
+		}
+
+	}
+
+	private static boolean isSubsequence(String a, String b) {
+		int m= a.length();
+		int n = b.length();
+		int i=0;
+		int j=0;
+		while(i<m && j<n) {
+			if(a.charAt(i)==b.charAt(j)) {
+				i++;
+			}
+			j++;
+		}
+		return i==m;
+	}
+
+}
