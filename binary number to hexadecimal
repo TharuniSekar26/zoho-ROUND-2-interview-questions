@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class BinaryToHexadecimal {
+    public static void main(String[] args) {
+        // Create a Scanner object to read user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user to enter a binary number
+        System.out.print("Enter a binary number: ");
+        String binaryNumber = scanner.nextLine();
+
+        // Convert the binary number to a decimal integer
+        int decimal = Integer.parseInt(binaryNumber, 2);
+
+        // Convert the decimal integer to a hexadecimal string
+        String hexadecimal = Integer.toHexString(decimal).toUpperCase();
+
+        // Display the hexadecimal representation
+        System.out.println("Hexadecimal equivalent: " + hexadecimal);
+    }
+}
+=====================================================================
+
+Input: 110001110
+Output: 18E
+
+Input: 1111001010010100001.010110110011011
+Output: 794A1.5B36 794A1D9B
+ 
