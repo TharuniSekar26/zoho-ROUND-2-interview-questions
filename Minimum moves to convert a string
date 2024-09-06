@@ -1,0 +1,31 @@
+Input: s = "XXOX"
+Output: 2
+Explanation: XXOX -> OOOX -> OOOO
+We select the first 3 characters in the first move, and convert them to 'O'.
+Then we select the last 3 characters and convert them so that the final string contains all 'O's.
+
+Input: s = "XXX"
+Output: 1
+Explanation: XXX -> OOO
+
+A move is defined as selecting three consecutive characters of s and converting them to 'O'. Note that if a move is applied to the character 'O', it will stay the same.
+
+Return the minimum number of moves required so that all the characters of s are converted to 'O'.
+
+=====================================================
+
+class Solution {
+    public int minimumMoves(String s) {
+        int count = 0;
+        int i=0;
+        while(i<s.length()){
+            if(s.charAt(i)=='X'){
+                count++;
+                i=i+3;
+            }else{
+                i++;
+            }
+        }
+        return count;
+    }
+}
