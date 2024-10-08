@@ -1,0 +1,35 @@
+class Solution:
+    def decodedString(self, s):
+        # code here
+        stack = []
+        curStr = ''
+        curNum = 0
+        for c in s:
+            if c.isdigit():
+                curNum = curNum*10+int(c)
+            elif c=='[':
+                stack.append((curStr,curNum))
+                curStr = ''
+                curNum = 0
+            elif c==']':
+                prevStr,Num = stack.pop()
+                curStr = prevStr + Num*curStr
+            else:
+                curStr +=c
+        return curStr
+
+
+=================================================
+
+
+Input: s = 1[b]
+Output: b
+Explaination: 'b' is present only one time.
+Example 2:
+
+Input: s = 3[b2[ca]]
+Output: bcacabcacabcaca
+Explaination: 2[ca] means 'ca' is repeated 
+twice which is 'caca' which concatenated with 
+'b' becomes 'bcaca'. This string repeated 
+thrice becomes the output.
