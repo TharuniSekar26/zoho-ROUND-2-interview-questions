@@ -1,0 +1,10 @@
+from datetime import datetime
+
+def days_between_dates(d1,m1,y1,d2,m2,y2):
+    date1 = datetime(y1,m1,d1)
+    date2 = datetime(y2,m2,d2)
+    d = abs(date2-date1).days
+    return d
+d1, m1, y1 = 10, 2, 2014
+d2, m2, y2 = 10, 3, 2015
+print(days_between_dates(d1, m1, y1, d2, m2, y2)) 
