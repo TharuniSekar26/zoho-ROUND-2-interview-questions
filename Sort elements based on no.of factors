@@ -1,0 +1,35 @@
+def count_factors(num):
+    factors = 0
+    for i in range(1,int(num**0.5)+1):
+        if(num%i==0):
+            if(num//i==i):
+                factors+=1
+            else:
+                factors+=2
+    return factors
+def sort_by_factors(arr):
+    factor = {}
+    for i in arr:
+        factor[i]=count_factors(i)
+    
+    sorted_arr = sorted(arr, key = lambda x: factor[x] , reverse = True)
+    return sorted_arr
+# Test cases
+arr1 = [5, 11, 10, 20, 9, 16, 23]
+print(sort_by_factors(arr1))
+
+
+
+===================================================================================
+
+
+
+Input : {5, 11, 10, 20, 9, 16, 23}
+Output : 20 16 10 9 5 11 23
+Number of distinct factors:
+For 20 = 6, 16 = 5, 10 = 4, 9 = 3
+and for 5, 11, 23 = 2 (same number of factors
+therefore sorted in increasing order of index)
+
+Input : {104, 210, 315, 166, 441, 180}
+Output : 180 210 315 441 104 166
