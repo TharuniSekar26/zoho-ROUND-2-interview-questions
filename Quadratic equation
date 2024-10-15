@@ -1,0 +1,52 @@
+import java.util.Scanner;
+
+public class QuadraticEquation {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter coefficients a, b, and c:");
+        double a = sc.nextDouble();
+        double b = sc.nextDouble();
+        double c = sc.nextDouble();
+
+        double discriminant = b * b - 4 * a * c;
+        if (discriminant >= 0) {
+            double root1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+            double root2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+            System.out.println("Roots are: " + root1 + " and " + root2);
+        } else {
+            System.out.println("The equation has no real roots.");
+        }
+    }
+}
+
+----------------------------------------------------------------------------
+
+Calculates the discriminant (Δ) of the quadratic equation using the formula Δ = b^2 - 4ac.
+
+Determining the Nature of Roots
+
+
+if (discriminant >= 0) {
+    ...
+} else {
+    System.out.println("The equation has no real roots.");
+}
+
+
+Checks the value of the discriminant to determine the nature of the roots:
+
+- If Δ ≥ 0, the equation has real roots.
+- If Δ < 0, the equation has no real roots.
+
+Calculating the Roots
+
+
+double root1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+double root2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+
+
+Calculates the roots using the quadratic formula:
+
+x = (-b ± √Δ) / 2a
+
+
