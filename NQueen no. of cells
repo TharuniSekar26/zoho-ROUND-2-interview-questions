@@ -1,0 +1,92 @@
+Consider a N X N chessboard with a Queen and K obstacles. The Queen cannot pass through obstacles. Given the position (x, y) of Queen, the task is to find the number of cells the queen can move.
+
+Examples: 
+
+Input : N = 8, x = 4, y = 4, 
+        K = 0
+Output : 27
+
+
+Input : N = 8, x = 4, y = 4, 
+        K = 1, kx1 = 3, ky1 = 5
+Output : 24
+
+
+==============================================================
+
+package DAY1;
+
+import java.util.*;
+
+public class NQueen {
+
+	static class Pair{
+		int x;
+		int y;
+		Pair(int x,int y){
+			this.x=x;
+			this.y=y;
+		}
+		@Override
+        public boolean equals(Object o) {
+            Pair pair = (Pair) o;
+            return x == pair.x && y == pair.y;
+        }
+		
+		@Override
+        public int hashCode() {
+            return Objects.hash(x, y);
+        }
+	}
+	public static void main(String[] args) {
+		int n = 8;
+		int k=1;
+		int x=4;
+		int y=4;
+		int[] xx= {3};
+		int[] yy= {5};
+		
+		System.out.print(noOfWays(n,k,x,y,xx,yy));
+
+	}
+	private static  int noOfWays(int n, int k, int x, int y, int[] xx, int[] yy) {
+		int ans = 0;
+		Map<Pair,Integer> mp = new HashMap<>();
+		while(k>0){
+			k--;
+			int x1=xx[k];
+			int y1=yy[k];
+			mp.put(new Pair(x1,y1),1);
+		}
+		ans+=check(n,x+1,y,1,0,mp);
+		ans+=check(n,x-1,y,-1,0,mp);
+		ans+=check(n,x,y+1,0,1,mp);
+		ans+=check(n,x,y-1,0,-1,mp);
+		ans+=check(n,x+1,y+1,1,1,mp);
+		ans+=check(n,x+1,y-1,1,-1,mp);
+		ans+=check(n,x-1,y+1,-1,1,mp);
+		ans+=check(n,x-1,y-1,-1,-1,mp);
+		
+		return ans;
+	}
+
+	private static int check(int n, int x, int y, int i, int j, Map<Pair, Integer> mp) {
+		int ans = 0;
+		System.out.print(mp);
+		while(isValid(x,y,n) && !mp.containsKey(new Pair(x,y))) {
+			x+=i;
+			y+=j;
+			ans++;
+		}
+		System.out.print(ans +" ");
+		return ans;
+	}
+
+	private static boolean isValid(int x, int y, int n) {
+		if(x>0 && x<=n && y>0 && y<=n) {
+			return true;
+		}
+		return false;
+	}
+
+}
