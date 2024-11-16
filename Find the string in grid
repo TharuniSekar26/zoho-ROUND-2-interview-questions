@@ -1,0 +1,65 @@
+Given a 2D grid of n*m of characters and a word, find all occurrences of given word in grid. A word can be matched in all 8 directions at any point. Word is said to be found in a direction if all characters match in this direction (not in zig-zag form). The 8 directions are, horizontally left, horizontally right, vertically up, vertically down, and 4 diagonal directions.
+
+Note: The returning list should be lexicographically smallest. If the word can be found in multiple directions starting from the same coordinates, the list should contain the coordinates only once. 
+
+
+grid = {{a,b,a,b},{a,b,e,b},{e,b,e,b}}
+word = "abe"
+Output: 
+{{0,0},{0,2},{1,0}}
+Explanation: 
+From (0,0) we can find "abe" in right-down diagonal. 
+From (0,2) we can find "abe" in left-down diagonal. 
+From (1,0) we can find "abe" in horizontally right direction.
+
+
+-------------------------------------------------------
+import java.util.*;
+public class Common {
+
+	
+	public static void main(String[] args) {
+		int[][] dir = {{-1,-1},{-1,0},{-1,1},{0,-1},{1,0},{1,1},{0,1},{1,-1}};
+		char[][] arr = {{'a','b','a','b'},{'a','b','e','b'},{'e','b','e','b'}};
+		int n= arr.length;
+		int m = arr[0].length;
+		String c = "abe";
+		Set<String> s = new TreeSet<>();
+		for(int i=0;i<arr.length;i++) {
+			for(int j=0;j<arr[0].length;j++) {
+				for(int k=0;k<8;k++) {
+					int x = dir[k][0];
+					int y = dir[k][1];
+					if(search(i,j,x,y,c,n,m,arr)) {
+						s.add(i+""+j);
+					}
+				}
+			}
+		}
+		//System.out.print(s);
+		int[][] result = new int[s.size()][2];
+		int k=0;
+		for(String i : s) {
+			result[k][0]=i.charAt(0)-'0';
+			result[k][1]=i.charAt(1)-'0';
+			k++;
+		}
+		for(int[] row : result) {
+			System.out.println(Arrays.toString(row));
+		}
+
+	}
+	
+
+	private static boolean search(int i, int j, int x, int y, String c, int n, int m, char[][] arr) {
+		for(int k=0;k<c.length();k++) {
+			int xx = i + k*x;
+			int yy = j + k*y;
+			if(xx<0 || yy<0 || xx>=n || yy>=m || arr[xx][yy]!=c.charAt(k)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+}
