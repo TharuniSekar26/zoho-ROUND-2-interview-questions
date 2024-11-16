@@ -1,0 +1,50 @@
+Input:
+S = "geeksforgeeks"
+Output: geeksforgeeks
+Explanation: The vowels are: e, e, o, e, e
+Reverse of these is also e, e, o, e, e.
+
+Example 2:
+
+Input: 
+S = "practice"
+Output: prectica
+Explanation: The vowels are a, i, e
+Reverse of these is e, i, a.
+
+----------------------------------------------
+
+
+class Solution
+{
+    String modify (String s)
+    {
+        s=s.toLowerCase();
+        char[] arr = s.toCharArray();
+        int l=0;
+        int r=s.length()-1;
+        Set<Character> set = new HashSet<>();
+        set.add('a');
+        set.add('e');
+        set.add('i');
+        set.add('o');
+        set.add('u');
+        while(l<=r){
+            if(set.contains(arr[l]) && set.contains(arr[r])){
+                char temp=arr[l];
+                arr[l]=arr[r];
+                arr[r]=temp;
+                l++;
+                r--;
+            }else if(set.contains(arr[l]) && !set.contains(arr[r])){
+                r--;
+            }else if(!set.contains(arr[l]) && set.contains(arr[r])){
+                l++;
+            }else{
+                l++;
+                r--;
+            }
+        }
+        return new String(arr);
+    }
+}
