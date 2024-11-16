@@ -1,0 +1,26 @@
+Input: arr[] =  ["3", "30", "34", "5", "9"]
+Output: "9534330"
+Explanation: Given numbers are  {"3", "30", "34", "5", "9"}, the arrangement "9534330" gives the largest value.
+Input: arr[] =  ["54", "546", "548", "60"]
+Output: "6054854654"
+Explanation: Given numbers are {"54", "546", "548", "60"}, the arrangement "6054854654" gives the largest value.
+Input: arr[] =  ["3", "4", "6", "5", "9"]
+Output: "96543"
+Explanation: Given numbers are  {"3", "4", "6", "5", "9"}, the arrangement "96543" gives the largest value.
+
+For Input: 
+3 30 34 5 9
+
+It's Correct output is: 
+9534330
+
+--------------------------------------------------------
+
+
+class Solution {
+    String printLargest(String[] arr) {
+        // code here
+        Arrays.sort(arr,(a,b)->(b+a).compareTo(a+b));
+        return String.join("",arr);
+    }
+}
