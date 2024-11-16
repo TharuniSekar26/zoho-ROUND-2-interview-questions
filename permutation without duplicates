@@ -1,0 +1,36 @@
+package DAY1;
+import java.util.*;
+public class Permutation {
+
+	static Set<String> set = new HashSet<>();
+	public static void main(String[] args) {
+		String s = "ABCA";
+		
+		char[] arr = s.toCharArray();
+		int fi = 0;
+		int i=0;
+		permute(arr,fi);
+		System.out.print(set);
+
+	}
+
+	private static void permute(char[] arr, int fi) {
+		if(fi==arr.length-1) {
+			set.add(new String(arr));
+			return;
+		}
+		for(int i=fi;i<arr.length;i++) {
+			swap(arr,fi,i);
+			permute(arr,fi+1);
+			swap(arr,fi,i);
+		}
+	}
+
+	private static void swap(char[] arr, int fi, int i) {
+		char temp = arr[fi];
+		arr[fi] = arr[i];
+		arr[i] = temp;
+	}
+	
+
+}
