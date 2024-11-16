@@ -1,0 +1,46 @@
+Given a string containing lower and uppercase alphabets, the task is to find the maximum number of characters between any two same (case sensitivity) character in the string.
+
+Example 1:
+
+Input:
+S = "socks"
+Output: 3
+Explanation: There are 3 characters between
+the two occurrences of 's'.
+Example 2:
+
+Input: 
+S = "FoR"
+Output: -1
+Explanation: No repeating character present.
+
+-----------------------------------------------------------
+
+
+class Solution
+{
+    public int maxChars(String s)
+    {
+        int max = -1;
+ 
+        char[] arr = s.toCharArray();
+        Map<Character,Integer> m = new HashMap<>();
+        
+        for(int i=0;i<s.length();i++){
+            if(!m.containsKey(arr[i])){
+                m.put(arr[i],i);
+            }else{
+               
+                if((i-m.get(arr[i])>max)){
+                    max = i-m.get(arr[i]);
+                }
+                 
+            }
+        }
+        
+        if(max>0){
+            return max-1;
+        }
+        return -1;
+    }
+}
