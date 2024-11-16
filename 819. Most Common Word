@@ -1,0 +1,43 @@
+Input: paragraph = "Bob hit a ball, the hit BALL flew far after it was hit.", banned = ["hit"]
+Output: "ball"
+Explanation: 
+"hit" occurs 3 times, but it is a banned word.
+"ball" occurs twice (and no other word does), so it is the most frequent non-banned word in the paragraph. 
+Note that words in the paragraph are not case sensitive,
+that punctuation is ignored (even if adjacent to words, such as "ball,"), 
+and that "hit" isn't the answer even though it occurs more because it is banned.
+
+
+---------------------------------------------------------------------------------------------
+
+class Solution {
+    public String mostCommonWord(String paragraph, String[] banned) {
+        paragraph = paragraph.toLowerCase();
+        int c = 0;
+        String max = "";
+        paragraph = paragraph.replaceAll("[!?',;.]"," ");
+
+        Map<String,Integer> m = new HashMap<String,Integer>();
+        Set<String> ban = new HashSet<>();
+        String[] arr = paragraph.split(" ");
+        for(int i=0;i<banned.length;i++){
+            ban.add(banned[i]);
+        }
+        System.out.print(ban);
+        for(String i : arr){
+           // System.out.print(i);
+            if(ban.contains(i) || i==" " || i==""){
+                continue;
+            }else{
+                m.put(i,m.getOrDefault(i,0)+1);
+            //    System.out.println(i+" "+m.get(i));
+            }
+
+            if(m.get(i)>c){
+                c = m.get(i);
+                max = i;
+            }
+        }
+        return max;
+    }
+}
