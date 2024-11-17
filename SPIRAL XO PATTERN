@@ -1,0 +1,65 @@
+package DAY1;
+
+import java.util.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+	
+		int n=5;
+		int m=5;
+		
+		char[][] mat = new char[n][m];
+		int l=0; // row increment
+		int k=0; // col increment
+		
+		while(l<n && k<m) {
+			for(int i=l;i<m;i++) {
+				mat[l][i]='x';
+			}
+			l++;
+			for(int i=l;i<n;i++) {
+				mat[i][m-1]='x';
+			}
+			m--;
+			for(int i=k;i<m;i++) {
+				mat[n-1][i]='x';
+			}
+			n--;
+			for(int i=l;i<n;i++) {
+				mat[i][k]='x';
+			}
+			k++;
+			
+			for(int i=l;i<m;i++) {
+				mat[l][i]='o';
+			}
+			l++;
+			for(int i=l;i<n;i++) {
+				mat[i][m-1]='o';
+			}
+			m--;
+			for(int i=k;i<m;i++) {
+				mat[n-1][i]='o';
+			}
+			n--;
+			for(int i=l;i<n;i++) {
+				mat[i][k]='o';
+			}
+			k++;	
+		}
+		for(int i=0;i<mat.length;i++) {
+			for(int j=0;j<mat[0].length;j++) {
+				System.out.print(mat[i][j]);
+			}
+			System.out.println();
+		}
+		
+		
+	}
+	
+}
+
+	
+	
+
