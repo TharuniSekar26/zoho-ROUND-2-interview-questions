@@ -1,0 +1,72 @@
+package DAY1;
+
+import java.util.Arrays;
+
+public class Main {
+
+	public static void main(String[] args) {
+		int n = 9999;
+		String[] one = {"", "one","two","three","four","five","six","seven","eight","nine","ten"};
+		String[] two = {"twenty","eleven","twelve","thirteen","forteen","fifteen","sixteen","seventeen","ninteen"};
+		String[] three = {"","","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninty"};
+		
+		if(n==0) {
+			System.out.print("zero");
+		}else if(n>0 && n<=10) {
+			System.out.print(one[n]);
+		}else if(n>10 && n<21) {
+			System.out.print(two[n%10]);
+		}else {
+			int temp = n;
+			int c=0;
+			while(temp!=0) {
+				c++;
+				temp=temp/10;
+			}
+			if(c==2) {
+				System.out.print(three[n/10]+" "+one[n%10]);	
+			}else if(c==3) {
+				System.out.print(one[n/100]+" hundred ");
+				n=n%100;
+				if(n>0 && n<=10) {
+					System.out.print("and ");
+					System.out.print(one[n]);
+				}else if(n>10 && n<21) {
+					System.out.print("and ");
+					System.out.print(two[n%10]);
+				}
+				else if(n>21) {
+					System.out.print("and ");
+					System.out.print(three[n/10]+" "+one[n%10]);
+				}
+			}else if(c==4) {
+				System.out.print(one[n/1000]+" thousand ");
+				n=n%1000;
+				if(n>0 && n<=10) {
+					System.out.print("and ");
+					System.out.print(one[n]);
+				}
+				else if(n>10 && n<21) {
+					System.out.print("and ");
+					System.out.print(two[n%10]);
+				}else if(n>21 && n<100) {
+					System.out.print("and ");
+					System.out.print(three[n/10]+" "+one[n%10]);
+				}else if(n>99) {
+					System.out.print(one[n/100]+" hundred ");
+					n=n%100;
+					if(n>0 && n<21) {
+						System.out.print("and ");
+						System.out.print(two[n%10]);
+					}else if(n>21) {
+						System.out.print("and ");
+						System.out.print(three[n/10]+" "+one[n%10]);
+					}
+				}
+			}
+		}
+
+	}
+
+
+}
