@@ -1,0 +1,61 @@
+package DAY1;
+import java.util.*;
+public class PhoneCall {
+
+	public static void main(String[] args) {
+		String s = "9999666446660222666777_7";
+		Map<String,String> m = new HashMap<>();
+		
+		m.put("2", "a");
+		m.put("22", "b");
+		m.put("222", "c");
+		m.put("3", "d");
+		m.put("33", "e");
+		m.put("333", "f");
+		m.put("4", "g");
+		m.put("44", "h");
+		m.put("444", "i");
+		m.put("5", "j");
+		m.put("55", "k");
+		m.put("555", "l");
+		m.put("6", "m");
+		m.put("66", "n");
+		m.put("666", "o");
+		m.put("7", "p");
+		m.put("77", "q");
+		m.put("777", "r");
+		m.put("7777", "s");
+		m.put("8", "t");
+		m.put("88", "u");
+		m.put("888", "v");
+		m.put("9", "w");
+		m.put("99", "x");
+		m.put("999", "y");
+		m.put("9999", "z");
+		m.put("0", " ");
+		
+		String result="";
+		String curr = s.substring(0,1);
+		if(s.length()==1) {
+			System.out.print(m.get(curr));
+		}
+		for(int i=1;i<s.length();i++) {
+			if(s.charAt(i)==s.charAt(i-1)) {
+				curr+=String.valueOf(s.charAt(i));
+			}else if(s.charAt(i)=='_') {
+				result+=m.get(curr);
+				curr=String.valueOf(s.charAt(i+1));
+				i++;
+			}
+			else if(s.charAt(i)!=s.charAt(i-1)) {
+				result+=m.get(curr);
+				curr=String.valueOf(s.charAt(i));
+			}
+		}
+		if(curr!="_") {
+			result+=m.get(curr);
+		}
+		System.out.print(result);
+	}
+
+}
