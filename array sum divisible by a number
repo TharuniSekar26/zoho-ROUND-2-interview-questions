@@ -1,0 +1,61 @@
+To find the number of groups and output the groups:
+Explanation: To find the sum of the elements in the groups and that sum should be divisible by input X and the groups should be limited to range with X numbers.
+If X is 3, then the group should have only 2 elements and 3 elements from the array whose sum is divisible by 3.
+Input:
+Array: 3, 9, 7, 4, 6, 8
+X: 3
+Output:
+3, 9
+3, 6
+9, 6
+3, 9, 6
+No of groups: 4
+
+----------------------------------------------------------------------------------
+
+
+package DAY1;
+
+import java.util.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+	
+		int[] arr = {3, 9, 7, 4, 6, 8};
+		int x=3;
+		ArrayList<ArrayList<Integer>> a = new ArrayList<>();
+		int n = arr.length;
+		int i=0;
+		find(arr,x,new ArrayList<>(),i,a);
+		System.out.print(a);
+		
+	}
+
+	private static void find(int[] arr, int x, ArrayList curr, int i, ArrayList<ArrayList<Integer>> a) {
+		if(curr.size()>0 && sum(curr)%x==0) {
+			if(!a.contains(curr)) {
+				a.add(new ArrayList<>(curr));
+			}
+		}
+		if(curr.size()==x) {
+			return;
+		}
+		for(int k=i;k<arr.length;k++) {
+			curr.add(arr[i]);
+			find(arr,x,curr,k+1,a);
+			curr.remove(curr.size()-1);
+		}
+		
+	}
+
+	private static int sum(ArrayList<Integer> curr) {
+		int s=0;
+		for(int i:curr) {
+			s+=i;
+		}
+		return s;
+	}
+
+	
+}
