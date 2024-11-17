@@ -1,0 +1,30 @@
+package DAY1;
+
+import java.util.Arrays;
+
+public class Factor {
+
+	public static void main(String[] args) {
+		//String s = "test123string";
+		String t="12345";
+		int n= t.length();
+		char[][] arr= new char[n][n];
+		
+		for(int i=0;i<n;i++) {
+			for(int j=0;j<n;j++) {
+				if(i==j) {
+					arr[i][j]=t.charAt(i);
+				}else if(j==n-i-1) {
+					arr[i][j]=t.charAt(n-i-1);
+				}else {
+					arr[i][j]=' ';
+				}
+			}
+		}
+		for(char[] row : arr) {
+			System.out.println(row);
+		}
+	}
+
+	
+}
