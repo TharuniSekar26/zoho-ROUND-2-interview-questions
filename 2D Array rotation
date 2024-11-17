@@ -1,0 +1,167 @@
+package DAY1;
+
+import java.util.Arrays;
+
+public class Main {
+
+	public static void main(String[] args) {
+		int[][] matrix = {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
+        };
+		
+//		 rotate90Clockwise(matrix);
+//		 for(int[] row : matrix){
+//			 System.out.println(Arrays.toString(row));
+//		 }
+		 
+//		 rotate180(matrix);
+//		 for(int[] row : matrix){
+//			 System.out.println(Arrays.toString(row));
+//		 }
+		 
+		 
+		 rotate270(matrix);
+		 for(int[] row : matrix){
+			 System.out.println(Arrays.toString(row));
+		 }
+		 
+
+	}
+
+	private static void rotate270(int[][] matrix) {
+		int n=matrix.length;
+		for(int i=0;i<n/2;i++) {
+			for(int j=i;j<n-i-1;j++) {
+				int temp= matrix[i][j];
+				matrix[i][j] = matrix[j][n-i-1];
+				matrix[j][n-i-1] = matrix[n-i-1][n-j-1];
+				matrix[n-i-1][n-j-1] = matrix[n-j-1][i];
+				matrix[n-j-1][i] = temp;
+				
+			}
+		}
+	}
+
+	private static void rotate180(int[][] matrix) {
+		int n=matrix.length;
+		for(int i=0;i<=n/2;i++) {
+			for(int j=0;j<n-i;j++) {
+				int temp= matrix[i][j];
+				matrix[i][j] = matrix[n-i-1][n-j-1];
+				matrix[n-i-1][n-j-1] = temp;	
+			}
+		}	
+	}
+
+	private static void rotate90Clockwise(int[][] matrix) {
+		int n=matrix.length;
+		for(int i=0;i<n/2;i++) {
+			for(int j=i;j<n-i-1;j++) {
+				int temp= matrix[i][j];
+				matrix[i][j] = matrix[n-j-1][i];
+				matrix[n-j-1][i] = matrix[n-i-1][n-j-1];
+				matrix[n-i-1][n-j-1] = matrix[j][n-i-1];
+				matrix[j][n-i-1] = temp;
+			}
+		}
+		
+	}
+
+}
+
+
+------------------------------------------------------
+
+
+
+import java.util.Scanner;
+
+public class MatrixRotation {
+
+    // Function to print the matrix
+    public static void printMatrix(int[][] matrix) {
+        for (int[] row : matrix) {
+            for (int elem : row) {
+                System.out.print(elem + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+
+    // Function for 90 degree clockwise rotation
+    public static void rotate90Clockwise(int[][] matrix) {
+        int n = matrix.length;
+        int[][] rotated = new int[n][n];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                rotated[j][n - 1 - i] = matrix[i][j];
+            }
+        }
+        System.out.println("90 Degree Rotation (Clockwise):");
+        printMatrix(rotated);
+    }
+
+    // Function for 180 degree rotation
+    public static void rotate180(int[][] matrix) {
+        int n = matrix.length;
+        int[][] rotated = new int[n][n];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                rotated[n - 1 - i][n - 1 - j] = matrix[i][j];
+            }
+        }
+        System.out.println("180 Degree Rotation:");
+        printMatrix(rotated);
+    }
+
+    // Function for 270 degree clockwise rotation (same as 90 degree counter-clockwise)
+    public static void rotate270Clockwise(int[][] matrix) {
+        int n = matrix.length;
+        int[][] rotated = new int[n][n];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                rotated[n - 1 - j][i] = matrix[i][j];
+            }
+        }
+        System.out.println("270 Degree Rotation (Clockwise):");
+        printMatrix(rotated);
+    }
+
+    // Function for 360 degree rotation (same as original matrix)
+    public static void rotate360(int[][] matrix) {
+        System.out.println("360 Degree Rotation (No Change):");
+        printMatrix(matrix);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input matrix size
+        System.out.print("Enter the size of the matrix (n x n): ");
+        int n = scanner.nextInt();
+
+        int[][] matrix = new int[n][n];
+
+        // Input the matrix elements
+        System.out.println("Enter the matrix elements:");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                matrix[i][j] = scanner.nextInt();
+            }
+        }
+
+        // Perform all rotations
+        rotate90Clockwise(matrix);
+        rotate180(matrix);
+        rotate270Clockwise(matrix);
+        rotate360(matrix);
+
+        scanner.close();
+    }
+}
