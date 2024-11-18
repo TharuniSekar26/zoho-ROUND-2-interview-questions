@@ -1,0 +1,47 @@
+1) To output the given string for the given input which is an integer.
+Input: 1
+Output: A
+Input: 26
+Output: Z
+Input : 27
+Output: AA
+Input: 28:
+Output: AB
+Input: 1000
+Output: ALL
+
+-----------------------------------------------------
+
+package DAY1;
+
+import java.util.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+		int[] arr = {1, 26, 27, 28, 1000};
+		
+		for(int i : arr) {
+			String s =alpha(i);
+			System.out.println(s);
+			
+		}
+	}
+
+	private static String alpha(int i) {
+		String r = "";
+		while(i>0) {
+			i--;
+			int rem = i%26;
+			r=(char)('A'+rem)+r;
+			i/=26;
+			
+		}
+		return r;
+	}
+	
+}
+
+	
+	
+
