@@ -1,0 +1,55 @@
+package DAY1;
+
+import java.util.*;
+
+public class Factor {
+
+	static class Date{
+		int date;
+		int month;
+		int year;
+		public Date(int date, int month, int year){
+			this.date = date;
+			this.month = month;
+			this.year = year;
+		}
+		
+		public String toString() {
+			return date+"/"+month+"/"+year;
+		}
+	}
+	public static void main(String[] args) {
+		List<Date> dates = new ArrayList<>();
+        dates.add(new Date(15, 11, 2023));
+        dates.add(new Date(10, 12, 2022));
+        dates.add(new Date(25, 11, 2023));
+        
+        List<String> sorted = new ArrayList<>();
+        
+        for(Date d : dates) {
+        	sorted.add(String.format("%04d%02d%02d",d.year,d.month,d.date ));
+        	
+        }
+        Collections.sort(sorted);
+        ArrayList<Date> arr = new ArrayList<>();
+        for(String s : sorted) {
+        	int year = Integer.parseInt(s.substring(0, 4));
+        	int month = Integer.parseInt(s.substring(4, 6));
+        	int date = Integer.parseInt(s.substring(6, 8));
+        	arr.add(new Date(date,month,year));
+            
+        }
+        for(Date d : arr) {
+        	System.out.println(d);
+        }
+	}
+
+	
+
+	
+	
+}
+
+	
+	
+
