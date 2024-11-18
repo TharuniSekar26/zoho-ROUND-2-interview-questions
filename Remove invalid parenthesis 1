@@ -1,0 +1,43 @@
+2) Remove unbalanced parentheses in a given expression.
+ Eg.) Input : ((abc)((de))
+ Output : ((abc)(de))
+ Input : (((ab)
+ Output : (ab) 
+           
+           ====================================================
+           
+           
+package DAY1;
+
+import java.util.*;
+
+public class Factor {
+
+	public static void main(String[] args) {
+		
+	String s = "(((a))))";
+	Stack<Integer> set = new Stack<>();
+	StringBuilder st = new StringBuilder(s);
+	for(int i=0;i<st.length();i++) {
+		if(s.charAt(i)=='(') {
+			set.push(i);
+		}else if(s.charAt(i)==')'){
+			if(!set.isEmpty()) {
+				set.pop();
+			}else {
+				st.deleteCharAt(i);
+				i--;
+			}
+		}
+	}
+	while(!set.isEmpty()) {
+		st.deleteCharAt(set.pop());
+	}
+	System.out.print(st.toString());
+	}
+	
+}
+
+	
+	
+
