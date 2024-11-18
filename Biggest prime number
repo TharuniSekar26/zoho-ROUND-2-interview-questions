@@ -1,0 +1,63 @@
+Find the largest possible prime number with given no
+Input
+5
+4691
+Output:
+9461
+
+----------------------------
+
+package DAY1;
+
+import java.util.*;
+
+public class Main {
+
+	static int max =0;
+	public static void main(String[] args) {
+		String s = "4691";
+		char[] arr = s.toCharArray();
+		int n=arr.length;
+		perm(arr,0,n);
+		System.out.print(max);
+	}
+
+	private static void perm(char[] arr, int fi, int n) {
+		if(fi==n-1) {
+			String s = new String(arr);
+			if(isPrime(Integer.parseInt(s))){
+				if(Integer.parseInt(s)>max) {
+					max = Integer.parseInt(s);
+				}
+			}
+		}
+		for(int i=fi;i<n;i++) {
+			swap(arr,i,fi);
+			perm(arr,fi+1,n);
+			swap(arr,i,fi);
+		}
+		
+	}
+
+	private static boolean isPrime(int n) {
+		for(int i=2;i<Math.sqrt(n);i++) {
+			if(n%i==0) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private static void swap(char[] arr, int i, int fi) {
+		char temp=arr[i];
+		arr[i]=arr[fi];
+		arr[fi]=temp;
+	}
+
+	
+	
+}
+
+	
+	
+
