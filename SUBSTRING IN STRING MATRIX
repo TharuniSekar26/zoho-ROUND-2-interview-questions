@@ -1,0 +1,125 @@
+Save the string “WELCOMETOZOHOCORPORATION” in a two dimensional array and search
+for substring like “too” in the two dimensional string both from left to right and from top to bottom.
+w e L C O
+M E T O Z
+O H O C O
+R P O R A
+T I O n
+And print the start and ending index as
+Start index : <1,2>
+End index: <3, 2>
+
+
+-----------------------------------------------------------------------
+
+
+package DAY1;
+
+import java.util.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+		String s = "WELCOMETOZOHOCORPORATION";
+		String t = "TOO";
+		int n=s.length();
+		char arr[][];
+		if(n==0) {
+			System.out.print("empty");
+		}
+		if(n<=3) {
+			arr = new char[1][n];
+		}
+		int row = findrow(n);
+		int col = findcol(n);
+		arr = new char[row][col];
+		fillArray(arr,row,col,s);
+		boolean flag = false;
+		if(!horizontalSearch(arr,row,col,t)) {
+			if(!verticalSearch(arr,row,col,t)) {
+				System.out.print("not found");
+			}
+		}
+		for(char[] rows : arr) {
+			System.out.println(rows);
+		}
+	}
+
+	private static boolean verticalSearch(char[][] arr, int row, int col, String t) {
+		for(int i=0;i<col;i++) {
+			String  r= "";
+			for(int j=0;j<row;j++) {
+				r+=arr[j][i];
+			}
+			if(r.contains(t)){
+				int start = r.indexOf(t);
+				int end = start+t.length()-1;
+				System.out.println(start+","+i);
+				System.out.println(end+","+i);
+				return true;
+				
+			}
+			
+			
+		}
+		return false;
+		
+	}
+
+	private static boolean horizontalSearch(char[][] arr,int row,int col, String t) {
+		for(int i=0;i<row;i++) {
+			String r = new String(arr[i]);
+			if(r.contains(t)){
+				int start = r.indexOf(t);
+				int end = start+t.length();
+				System.out.println(start+","+i);
+				System.out.println(end+","+i);
+				return true;
+				
+			}
+			
+		}
+		return false;
+	}
+
+	private static void fillArray(char[][] arr,int r,int c, String s) {
+		int k=0;
+		for(int i=0;i<r;i++) {
+			for(int j=0;j<c;j++) {
+				if(k<s.length()) {
+					arr[i][j]= s.charAt(k);
+					k++;
+				}
+			}
+		}
+		
+	}
+	
+
+	private static int findcol(int n) {
+		int sq = (int) Math.sqrt(n);
+		int lower = sq*sq;
+		int higher = (sq+1)*(sq+1);
+		if(n-lower<=higher-n) {
+			return sq;
+		}else {
+			return sq+1;
+		}
+		
+	}
+
+	private static int findrow(int n) {
+		int sq = (int) Math.sqrt(n);
+		if(sq*sq==n) {
+			return sq;
+		}else {
+			return sq+1;
+		}
+		
+	}
+	
+}
+
+	
+	
+
