@@ -1,0 +1,72 @@
+Given a string s that contains parentheses and letters, remove the minimum number of invalid parentheses to make the input string valid.
+
+Return a list of unique strings that are valid with the minimum number of removals. You may return the answer in any order.
+
+ 
+
+Example 1:
+
+Input: s = "()())()"
+Output: ["(())()","()()()"]
+Example 2:
+
+Input: s = "(a)())()"
+Output: ["(a())()","(a)()()"]
+Example 3:
+
+Input: s = ")("
+Output: [""]
+
+
+-------------------------------------------------------------------------------------------------------------------------
+
+
+class Solution {
+    public List<String> removeInvalidParentheses(String s) {
+        Queue<String> q = new LinkedList<>();
+        Set<String> visited = new HashSet<>();
+
+        ArrayList<String> arr = new ArrayList<>();
+
+        q.add(s);
+        visited.add(s);
+        boolean flag = false;
+        while(!q.isEmpty()){
+            String temp = q.poll();
+            if(valid(temp)){
+                arr.add(temp);
+                flag = true;
+            }
+            if(flag){
+                continue;
+            }
+            for(int i=0;i<temp.length();i++){
+                if(temp.charAt(i)!='(' && temp.charAt(i)!=')'){
+                    continue;
+                }
+                String ss = temp.substring(0,i)+temp.substring(i+1,temp.length());
+                if(!visited.contains(ss)){
+                    q.add(ss);
+                    visited.add(ss);
+                }
+            }
+        }
+        return arr;
+    }
+
+    boolean valid(String s){
+        int c = 0;
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i)=='('){
+                c++;
+            }else if(s.charAt(i)==')'){
+                c--;
+            }
+
+            if(c<0){
+                return false;
+            }
+        }
+        return c==0;
+    }
+}
