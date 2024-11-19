@@ -1,0 +1,45 @@
+. Given a string of integers find out all the possible words that can made out of it in continuous
+order. Eg: 11112
+ans: AAAAB
+AKAB
+AAKB
+AAAL etc.
+
+-----------------------------------------------------
+
+
+package DAY1;
+
+import java.util.*;
+
+
+public class Main {
+
+	static List<String> words=new ArrayList<>();
+    public static void main(String[] args) {
+        String digits = "11112";
+      //  findWords(digits);
+        backtrack(digits,0, new StringBuilder());
+        for (String word : words) {
+            System.out.println(word);
+        }
+    }
+
+	private static void backtrack(String digits, int i, StringBuilder curr) {
+		
+		if(i>=digits.length()) {
+			words.add(curr.toString());
+			return;
+		}
+		for(int j=1;j<=2 && (j+i)<=digits.length();j++) {
+			int digit = Integer.parseInt(digits.substring(i, j+i));
+			if(digit<=26) {
+				curr.append((char)('A'+(digit-1)));
+				System.out.print(i+" ");
+				backtrack(digits,i+j,curr);
+				System.out.println(i+" ");
+				curr.deleteCharAt(curr.length()-1);
+			}
+		}
+	}
+}
