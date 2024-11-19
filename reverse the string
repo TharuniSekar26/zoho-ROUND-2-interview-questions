@@ -1,0 +1,26 @@
+
+public class Main {
+
+    public static void main(String[] args) {
+        String s = "A man, in the boat says : I see 1-2-3 in the sky";
+        StringBuilder st = new StringBuilder();
+        String temp = s;
+        int k=0;
+        for(int i=temp.length()-1;i>=0;){
+        	if((temp.charAt(i)>='a' && temp.charAt(i)<='z')||(temp.charAt(i)>='A' && temp.charAt(i)<='Z')||temp.charAt(i)>='0' && temp.charAt(i)<='9') {
+        		char t = temp.charAt(i);
+        		while(!((s.charAt(k)>='a' && s.charAt(k)<='z')||(s.charAt(k)>='A' && s.charAt(k)<='Z')||(s.charAt(k)>='0' && s.charAt(k)<='9'))){
+        		    st.append(s.charAt(k));
+        		    k++;
+        		}
+        		if((s.charAt(k)>='a' && s.charAt(k)<='z')||(s.charAt(k)>='A' && s.charAt(k)<='Z')||(s.charAt(k)>='0' && s.charAt(k)<='9')) {
+        			st.append(t);
+        		}
+        		k++;
+        	}
+        	i--;
+        }
+        //y kse, ht ni3 21ee slsy : a sta o-b-e ht nin amA
+        System.out.print(st.toString());
+    }
+}
