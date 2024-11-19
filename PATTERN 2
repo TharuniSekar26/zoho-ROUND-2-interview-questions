@@ -1,0 +1,35 @@
+Write a program to print the below pattern
+for n = 6
+ 1 7 12 16 19 21
+ 2 8 13 17 20
+3 9 14 18
+4 10 15
+5 11
+6 
+
+-------------------------------------------
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+	
+	public static void main(String args[]) {
+	int n=6;
+	int k=1;
+	for(int i=6;i>0;i--) {
+		int l=6;
+		int t = k;
+		System.out.print(t+" ");
+		for(int j=1;j<i;j++) {
+			t=t+l;
+			System.out.print(t+" ");
+			l--;
+			
+		}
+		System.out.println();
+		k++;
+	}
+	}
+}
